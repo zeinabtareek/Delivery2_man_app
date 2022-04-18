@@ -13,7 +13,7 @@ import 'package:efood_multivendor_driver/view/base/custom_text_field.dart';
 import 'package:efood_multivendor_driver/view/screens/auth/widget/code_picker_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:phone_number/phone_number.dart';
+// import 'package:phone_number/phone_number.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -71,11 +71,11 @@ class SignInScreen extends StatelessWidget {
                             ),
                           ),
                           Expanded(child: CustomTextField(
-                            hintText: 'phone'.tr,
+                            hintText: 'email'.tr,
                             controller: _phoneController,
                             focusNode: _phoneFocus,
                             nextFocus: _passwordFocus,
-                            inputType: TextInputType.phone,
+                            inputType: TextInputType.text,
                             divider: false,
                           )),
                         ]),
@@ -157,9 +157,9 @@ class SignInScreen extends StatelessWidget {
     String _numberWithCountryCode = countryCode+_phone;
     bool _isValid = false;
     try {
-      PhoneNumber phoneNumber = await PhoneNumberUtil().parse(_numberWithCountryCode);
-      _numberWithCountryCode = '+'+phoneNumber.countryCode+phoneNumber.nationalNumber;
-      _isValid = true;
+      // PhoneNumber phoneNumber = await PhoneNumberUtil().parse(_numberWithCountryCode);
+      // _numberWithCountryCode = '+'+phoneNumber.countryCode+phoneNumber.nationalNumber;
+      // _isValid = true;
     }catch(e) {}
 
     if (_phone.isEmpty) {

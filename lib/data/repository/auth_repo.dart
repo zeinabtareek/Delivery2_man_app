@@ -20,8 +20,8 @@ class AuthRepo {
   final SharedPreferences sharedPreferences;
   AuthRepo({@required this.apiClient, @required this.sharedPreferences});
 
-  Future<Response> login(String phone, String password) async {
-    return await apiClient.postData(AppConstants.LOGIN_URI, {"phone": phone, "password": password});
+  Future<Response> login(String email, String password) async {
+    return await apiClient.postData(AppConstants.LOGIN_URI, {"email": email, "password": password});
   }
 
   Future<Response> getProfileInfo() async {
@@ -96,18 +96,18 @@ class AuthRepo {
     return _deviceToken;
   }
 
-  Future<Response> forgetPassword(String phone) async {
-    return await apiClient.postData(AppConstants.FORGET_PASSWORD_URI, {"phone": phone});
+  Future<Response> forgetPassword(String email) async {
+    return await apiClient.postData(AppConstants.FORGET_PASSWORD_URI, {"email": email});
   }
 
-  Future<Response> verifyToken(String phone, String token) async {
-    return await apiClient.postData(AppConstants.VERIFY_TOKEN_URI, {"phone": phone, "reset_token": token});
+  Future<Response> verifyToken(String email, String token) async {
+    return await apiClient.postData(AppConstants.VERIFY_TOKEN_URI, {"email": email, "reset_token": token});
   }
 
-  Future<Response> resetPassword(String resetToken, String phone, String password, String confirmPassword) async {
+  Future<Response> resetPassword(String resetToken, String email, String password, String confirmPassword) async {
     return await apiClient.postData(
       AppConstants.RESET_PASSWORD_URI,
-      {"_method": "put", "phone": phone, "reset_token": resetToken, "password": password, "confirm_password": confirmPassword},
+      {"_method": "put", "email": email, "reset_token": resetToken, "password": password, "confirm_password": confirmPassword},
     );
   }
 

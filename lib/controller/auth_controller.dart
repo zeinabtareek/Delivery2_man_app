@@ -36,10 +36,10 @@ class AuthController extends GetxController implements GetxService {
   ProfileModel get profileModel => _profileModel;
   XFile get pickedFile => _pickedFile;
 
-  Future<ResponseModel> login(String phone, String password) async {
+  Future<ResponseModel> login(String email, String password) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.login(phone, password);
+    Response response = await authRepo.login(email, password);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       authRepo.saveUserToken(response.body['token'], response.body['zone_wise_topic']);
@@ -233,10 +233,10 @@ class AuthController extends GetxController implements GetxService {
     return responseModel;
   }
 
-  Future<ResponseModel> resetPassword(String resetToken, String phone, String password, String confirmPassword) async {
+  Future<ResponseModel> resetPassword(String resetToken, String email, String password, String confirmPassword) async {
     _isLoading = true;
     update();
-    Response response = await authRepo.resetPassword(resetToken, phone, password, confirmPassword);
+    Response response = await authRepo.resetPassword(resetToken, email, password, confirmPassword);
     ResponseModel responseModel;
     if (response.statusCode == 200) {
       responseModel = ResponseModel(true, response.body["message"]);
